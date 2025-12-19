@@ -1,0 +1,35 @@
+[Unit]
+# Human-readable name of the service
+Description=Java React App
+# Ensures the network is ready before starting the app
+After=network.target
+
+[Service]
+# Security: The service runs as the restricted user/group we created
+User=appjavauser
+Group=appjavauser
+
+# The full path to the java binary and the jar file
+# The flag --logging.file.path ensures logs go to our writable directory
+ExecStart=/usr/bin/java -jar /opt/my-java-app/java-react-example.jar --logging.file.path=/opt/my-java-app/logs
+
+# The directory where the process executes
+WorkingDirectory=/opt/my-java-app
+
+# Reliability: Automatically restart the app if it crashes
+Restart=always
+# Wait 10 seconds before attempting a restart
+RestartSec=10
+
+# Security: Prevents the app from seeing /home or /tmp directories
+ProtectHome=yes
+PrivateTmp=yes
+
+# Logging: Captures console output to the system journal
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=my-java-app
+
+[Install]
+# Defines the runlevel (multi-user is standard for servers)
+WantedBy=multi-user.target
