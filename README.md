@@ -46,6 +46,10 @@ cat ~/.ssh/id_rsa.pub
 
 Security is a priority. Before doing anything else, we will restrict access to the server. Navigate to **Networking > Firewalls** in the DigitalOcean dashboard and click **Create Firewall**.
 
+<p align="center">
+  <img src="assets/create-firewall.png" alt="create-firewall" width="700"/>
+</p>
+
 #### Inbound Rules
 
 Define which traffic is allowed to reach your server. For now, we will **only** allow SSH access.
@@ -59,7 +63,11 @@ Define which traffic is allowed to reach your server. For now, we will **only** 
 
 > **Note:** We will open the application port in a later step.
 
-After saving the firewall, go to the **Droplets** tab within the firewall settings, click **Add Droplets**, and select the Droplet you created in Step 1.
+Apply the firewall to your Droplet and save the changes.
+
+<p align="center">
+  <img src="assets/firewall-rules-and-droplet.png" alt="firewall-rules" width="700"/>
+</p>
 
 ---
 
@@ -80,7 +88,7 @@ For security best practices, you should not perform daily tasks as the `root` us
 
 ```bash
 # Usage: scp [local-path] root@[ip-address]:[remote-path]
-scp ./create_admin_user.sh root@456.456.456.456:/root
+scp ./scripts/create_admin_user.sh root@456.456.456.456:/root
 ```
 
 2. **Access the Droplet via ssh:**
@@ -138,10 +146,12 @@ sudo apt update
 sudo apt install openjdk-8-jre-headless
 ```
 
+You can verify that Java is available running the `java -version` command.
+
 3. **Transfer files:** Open a new terminal on your local machine and copy the JAR and the setup script to your admin user's home directory.
 
 ```bash
-scp ./build/libs/java-react-example.jar ./setup_app_env.sh newadmin@456.456.456.456:/home/newadmin/
+scp ./build/libs/java-react-example.jar ./scripts/setup_app_env.sh newadmin@456.456.456.456:/home/newadmin/
 ```
 
 ---
