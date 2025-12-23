@@ -1,21 +1,32 @@
 # Module 5 - Cloud & Infrastructure as Service (IaaS) Basics
 
-This guide demonstrates how to deploy a Spring Boot REST API application to a DigitalOcean Droplet. The application features a REST endpoint (`/api/countries`) and a React/Redux frontend that fetches and displays country data. You will learn how to configure a secure Linux server, isolate the application with a dedicated service user, and manage the application lifecycle with Systemd.
+## Demo Project: Create a Server and Deploy Application on DigitalOcean
 
-## Create a Server and Deploy an Application on Digital Ocean (DO)
+### Technologies Used
+
+- DigitalOcean
+- Linux
+- Java
+- Gradle
+
+### Project Description
+
+- Setup and configure a server on DigitalOcean
+- Create and configure a new Linux user on the Droplet (security best practice)
+- Deploy and run a Java Gradle application on Droplet
+
+---
+
+### Step 1: Create a DigitalOcean Droplet
 
 In DigitalOcean, a **Droplet** is a Virtual Private Server (VPS). It acts as a lightweight, scalable virtual machine (VM) in the cloud, providing dedicated resources like CPU, RAM, and SSD storage, along with a unique public IP address.
 
 By creating a Droplet, you gain full control over the Operating System (e.g., Ubuntu, CentOS), allowing you to manage it like a standalone physical server.
 
 > [!NOTE]
-> For the following steps, we assume your Droplet's public IP is `456.456.456.456`. You will receive your actual IP address via the DigitalOcean UI after creation.
+> In this example, we assume your Droplet's public IP is `456.456.456.456`. You will receive your actual IP address via the DigitalOcean UI after creation.
 >
 > The local machine used in this example is a laptop running `Ubuntu 22.04.5`.
-
----
-
-### Step 1: Create a DigitalOcean Droplet
 
 For this setup, we're using **Ubuntu 22.04** and a "Basic" plan.
 
