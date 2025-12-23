@@ -1,37 +1,32 @@
-buildscript {
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.7.11'
-  }
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'org.springframework.boot' version '3.5.5'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
-
-apply plugin: 'java'
-apply plugin: 'groovy'
-apply plugin: 'org.springframework.boot'
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 dependencies {
-  implementation(
-      "org.springframework.boot:spring-boot-starter-web:2.7.11",
-      "org.springframework.boot:spring-boot-devtools:2.6.4"
-  )
-  testImplementation(
-      "org.springframework.boot:spring-boot-starter-test:2.7.11",
-      "org.spockframework:spock-spring:2.1-groovy-3.0"
-  )
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-devtools"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.spockframework:spock-spring:2.4-M6-groovy-4.0"
 }
 
 tasks.withType(Test) {
-  testLogging {
-    exceptionFormat = 'full'
-    events 'passed', 'skipped', 'failed'
-  }
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat = 'full'
+        events 'passed', 'skipped', 'failed'
+    }
 }
