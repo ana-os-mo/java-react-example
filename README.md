@@ -9,7 +9,7 @@ In DigitalOcean, a **Droplet** is a Virtual Private Server (VPS). It acts as a l
 By creating a Droplet, you gain full control over the Operating System (e.g., Ubuntu, CentOS), allowing you to manage it like a standalone physical server.
 
 > [!NOTE]
-> For the following steps, we assume your Droplet's public IP is `456.456.456.456`. You will receive your actual IP address via the DigitalOcean UI after creation. The local machine used in this example is a laptop running `Ubuntu 22.04.5`.
+> For the following steps, we assume your Droplet's public IP is `456.456.456.456`. You will receive your actual IP address via the DigitalOcean UI after creation.
 >
 > The local machine used in this example is a laptop running `Ubuntu 22.04.5`.
 
@@ -117,12 +117,7 @@ exit
 
 ### Step 4: Build the App and Transfer to Server
 
-To build this application, you can use **OpenJDK 17** and **Gradle 8.1** on your local machine.
-
-> [!IMPORTANT]
-> **Java Version Compatibility:**
-> Although we are building the project using JDK 17 locally, the `build.gradle` file is configured with `sourceCompatibility = 1.8`.
-> This ensures the generated JAR file is compatible with **Java 8**, which is the version we will install on the server to support other legacy applications.
+To build this application, you can use **OpenJDK 17** and **Gradle 9.2.1** on your local machine.
 
 1. **Build the JAR:** Run the following command from the project root on your local machine:
 
@@ -138,12 +133,12 @@ This generates the artifact at `./build/libs/java-react-example.jar`.
 ssh newadmin@456.456.456.456
 ```
 
-Then, install the Java 8 Runtime Environment (JRE):
+Then, install the Java 17 Runtime Environment (JRE):
 
 ```bash
 sudo apt update
 
-sudo apt install openjdk-8-jre-headless
+sudo apt install openjdk-17-jre-headless
 ```
 
 You can verify that Java is available running the `java -version` command.
