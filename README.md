@@ -1,6 +1,6 @@
 # Module 5 - Cloud & Infrastructure as Service (IaaS) Basics
 
-## Demo Project: Create a Server and Deploy Application on DigitalOcean
+## Project: Create a Server and Deploy Application on DigitalOcean
 
 ### Technologies Used
 
@@ -67,7 +67,7 @@ Define which traffic is allowed to reach your server. For now, we will **only** 
 
 | Type | Protocol | Port Range | Sources | Purpose |
 | --- | --- | --- | --- | --- |
-| **SSH** | TCP | 22 | `[your-local-machine-public-IP]` | Allows only YOU to access the server terminal. |
+| **SSH** | TCP | 22 | `<your-local-machine-public-IP>` | Allows only YOU to access the server terminal. |
 
 * **Find your IP:** You can find your current local IP at [whatismyip.com](https://www.whatismyip.com/).
 * **Restricting SSH:** This rule ensures that only devices on your specific network can attempt to log in.
@@ -98,7 +98,7 @@ For security best practices, you should not perform daily tasks as the `root` us
 1. **Transfer the setup script:** From your **local machine**, copy the `create_admin_user.sh` script to the remote server using `scp` (Secure Copy).
 
 ```bash
-# Usage: scp [local-path] root@[ip-address]:[remote-path]
+# Usage: scp <local-path> root@<ip-address>:<remote-path>
 scp ./scripts/create_admin_user.sh root@456.456.456.456:/root
 ```
 
@@ -169,7 +169,7 @@ We will now create a dedicated system user to run the application. This follows 
 **What the `setup_app_env.sh` script does:**
 
 * **Isolates the App:** Creates a system user with no login shell and no home directory.
-* **Sets Up Directories:** Creates `/opt/[app_name]` for the binary and a `/logs` sub-directory.
+* **Sets Up Directories:** Creates `/opt/<app_name>` for the binary and a `/logs` sub-directory.
 * **Hardens Permissions:** Ownership of the application directory is given to `root` so the service user cannot modify the executable, while the `/logs` folder is made writable for the app.
 
 ***Execution***
@@ -179,7 +179,7 @@ We will now create a dedicated system user to run the application. This follows 
 ```bash
 sudo chmod u+x setup_app_env.sh
 
-# Usage: ./setup_app_env.sh [app_name] [service_user_name] [app_port]
+# Usage: ./setup_app_env.sh <app_name> <service_user_name> <app_port>
 sudo ./setup_app_env.sh "my-java-app" "appjavauser" 7071
 ```
 
